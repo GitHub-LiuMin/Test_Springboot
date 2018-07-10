@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.AnMapper">
+	<select id="findAnimalList" resultType="com.bw.bean.Animal">
+		SELECT a.*,GROUP_CONCAT(r.rid) rid,GROUP_CONCAT(r.rname) rname 
+FROM animal as a left JOIN a_r as m on a.aid=m.aid LEFT JOIN `range`as r on r.rid=m.rid 
+GROUP BY a.aid limit #{starts},#{rows}
+	</select>
+	<select id="countAnimal" resultType="Integer">
+		SELECT count(1) from animal
+	</select>
+	<select id="findRange" resultType="com.bw.bean.Range">
+		SELECT * from `range`
+	</select>
+		
+	<delete id="batchDeleteByAnimal" >
+		DELETE from animal where aid = #{id}
+	</delete>
+	<delete id="batchDeleteByA_R">
+		DELETE from a_r where aid = #{id}
+	</delete>
+	<insert id="save" parameterType="com.bw.bean.Animal" useGeneratedKeys="true" keyColumn="aid" keyProperty="aid">
+		INSERT into animal(aname,weight) values(#{aname},#{weight})
+	</insert>
+	<insert id="saveA_R"  >
+		insert into a_r(aid,rid) values(#{aid},#{rid})
+	</insert>
+</mapper>
