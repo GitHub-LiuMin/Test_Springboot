@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: my-site
+Implementation-Version: 1.0.0.RELEASE
+Built-By: Lenovo
+Implementation-Vendor-Id: cn.luischen
+Build-Jdk: 1.8.0_172
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/my-site
+Created-By: Maven Integration for Eclipse
+
